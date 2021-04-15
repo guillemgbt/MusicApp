@@ -13,6 +13,8 @@ class LoginViewModel {
     private let credentialsManager: CredentialsManaging
     
     let message = PassthroughSubject<Message, Never>()
+    let shouldDismiss = PassthroughSubject<Bool, Never>()
+    @Published var isFetchingProfile: Bool = false
     
     private var subscriptions = Set<AnyCancellable>()
     
@@ -44,6 +46,7 @@ class LoginViewModel {
     }
     
     private func fetchProfile() {
+        isFetchingProfile = true
         
         credentialsManager
             .fetchProfile()
@@ -54,6 +57,7 @@ class LoginViewModel {
                 case .failure(_):
                     self?.onFailed()
                 }
+                self?.isFetchingProfile = false
             } receiveValue: { user in
                 print("User fetched: \(user.name ?? "")")
             }
@@ -69,7 +73,7 @@ class LoginViewModel {
     }
     
     private func onSuccess() {
-        
+        shouldDismiss.send(true)
     }
     
     

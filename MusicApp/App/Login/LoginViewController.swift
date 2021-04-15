@@ -62,6 +62,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
     
     private func bindView() {
         bindMessage()
+        bindShouldDismiss()
     }
     
     private func bindMessage() {
@@ -70,6 +71,16 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] (message) in
                 self?.show(message: message)
+            }
+            .store(in: &subscriptions)
+    }
+    
+    private func bindShouldDismiss() {
+        viewModel
+            .shouldDismiss
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
             }
             .store(in: &subscriptions)
     }
