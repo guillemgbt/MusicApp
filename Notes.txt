@@ -1,0 +1,40 @@
+
+THINGS TO HAVE:
+
+- Overview of the design + backend capabilities
+
+- Data modeling + persistence (Remote, Cached models, Relations...)
+
+- Combine Networking Layer
+
+- UI library system, maybe create a pod repo for it
+
+- Persistent List library
+
+- Offline first experience
+
+- Navigation Architcture -> Deep Link, Universal Link
+https://medium.com/@albertodebo/deep-linking-at-scale-on-ios-1dd8789c389f (NavigationEngine)
+
+- Dependency Injection System
+
+- Core data mock
+
+- AVPlayerEngine set up
+    - Local and streaming
+    - Download+play
+    - Audio tap + effects, EQ, Frequency visualizer
+    
+- Feed component, generic headers, items, grid/lists... -> Persistency//Cache layer
+
+- UIKit/SwiftUI components + view models
+
+- Watch app
+
+- Player, MiniPlayer + TapBar + offline notification
+
+- Reachability + streaming songs disabled
+
+- Create Lens navigation
+
+- Create parallax lists (generic)

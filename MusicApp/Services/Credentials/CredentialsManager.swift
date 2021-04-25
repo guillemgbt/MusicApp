@@ -13,8 +13,11 @@ import CoreData
 protocol CredentialsManaging {
     var loginPageURL: URL { get }
     var accessToken: String? { get }
+    var userId: String? { get }
     func registerAccessToken(_ token: String)
     func fetchProfile() -> AnyPublisher<User, Error>
+    func getUser() -> AnyPublisher<User, Error>
+    var currentUser: User? { get }
 }
 
 enum CredentialsManagerError: Error {
@@ -28,12 +31,14 @@ class CredentialsManager: CredentialsManaging {
         case userIdKey
     }
     
-    private let api: API
-    private let coreDataManager: CoreDataManager
+    private let networkClient: NetworkClient
+    private let coreDataManager: CoreDataStack
+    private let userDefaults: UserDefaultsInterface
     
-    init(api: API = API.shared, coreDataManager: CoreDataManager = CoreDataManager.shared) {
-        self.api = api
-        self.coreDataManager = coreDataManager
+    init(environment: Environment = AppEnvironment.shared) {
+        self.networkClient = environment.networkClient
+        self.coreDataManager = environment.coreDataStack
+        self.userDefaults = environment.userDefaults
     }
     
     var loginPageURL: URL {
@@ -57,26 +62,29 @@ class CredentialsManager: CredentialsManaging {
     @Published var isSignedIn: Bool = false
     
     var accessToken: String? {
-        return UserDefaults.standard.string(forKey: Keys.tokenKey.rawValue)
+        return userDefaults.string(forKey: Keys.tokenKey.rawValue)
     }
     
     func registerAccessToken(_ token: String) {
-        UserDefaults.standard.setValue(token, forKey: Keys.tokenKey.rawValue)
+        userDefaults.setValue(token, forKey: Keys.tokenKey.rawValue)
     }
     
     var userId: String? {
-        return UserDefaults.standard.string(forKey: Keys.userIdKey.rawValue)
+        return userDefaults.string(forKey: Keys.userIdKey.rawValue)
     }
     
+    // https://www.donnywals.com/implementing-a-one-way-sync-strategy-with-core-data-urlsession-and-combine/
+    
     func fetchProfile() -> AnyPublisher<User, Error> {
-        return api.GET(.profile)
-            .decode(type: User.self, decoder: JSONDecoder())
+        return networkClient.GET(.profile)
             .receive(on: DispatchQueue.main)
-            .tryMap { [weak self] user -> User in
-                try self?.coreDataManager.saveContext()
-                UserDefaults.standard.setValue(user.id, forKey: Keys.userIdKey.rawValue)
-                return user
-            }.eraseToAnyPublisher()
+            .decode(type: User.self, decoder: coreDataManager.contextJSONDecoder)
+            .flatMap({ [weak self] user -> AnyPublisher<User, Error> in
+                self?.userDefaults.setValue(user.id, forKey: Keys.userIdKey.rawValue)
+                try? self?.coreDataManager.saveContext()
+                return self?.getUser() ??
+                    Fail(error: CredentialsManagerError.missingData).eraseToAnyPublisher()
+            }).eraseToAnyPublisher()
     }
     
     func getUser() -> AnyPublisher<User, Error> {

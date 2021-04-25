@@ -8,10 +8,6 @@
 import Foundation
 import CoreData
 
-extension CodingUserInfoKey {
-    static let managedObjectContext = CodingUserInfoKey(rawValue: "managedObjectContext")!
-}
-
 enum DecoderConfigurationError: Error {
     case missingManagedObjectContext
     case unknownEntityType
@@ -25,11 +21,11 @@ class Track: NSManagedObject, Decodable {
     }
 
     required convenience init(from decoder: Decoder) throws {
-//        guard let context = decoder.userInfo[CodingUserInfoKey.managedObjectContext] as? NSManagedObjectContext else {
-//            throw DecoderConfigurationError.missingManagedObjectContext
-//        }
-
-        self.init(context: CoreDataManager.shared.context)
+        guard let context = decoder.userInfo[CodingUserInfoKey.managedObjectContext] as? NSManagedObjectContext else {
+            throw CoreDataStackError.missingContext
+        }
+        
+        self.init(context: context)
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let id = try container.decode(Int64.self, forKey: .id)

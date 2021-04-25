@@ -17,7 +17,11 @@ class User: NSManagedObject, Decodable {
     }
     
     required convenience init(from decoder: Decoder) throws {
-        self.init(context: CoreDataManager.shared.context)
+        guard let context = decoder.userInfo[.managedObjectContext] as? NSManagedObjectContext else {
+            throw CoreDataStackError.missingContext
+        }
+        
+        self.init(context: context)
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let id = try container.decode(Int64.self, forKey: .id)

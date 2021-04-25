@@ -44,6 +44,14 @@
 		5B800BAF2606D58000F6C919 /* URL+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B800BAE2606D58000F6C919 /* URL+Ext.swift */; };
 		5BB178D626028873007B0FF5 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB178D526028873007B0FF5 /* Artist.swift */; };
 		5BB178DB26028883007B0FF5 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB178DA26028883007B0FF5 /* Album.swift */; };
+		5BE692F92633830900738969 /* MockCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE692F82633830900738969 /* MockCoreDataStack.swift */; };
+		5BE69302263385E500738969 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE69301263385E500738969 /* Environment.swift */; };
+		5BE693072633863C00738969 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE693062633863C00738969 /* AppEnvironment.swift */; };
+		5BE6930D2636042400738969 /* Data+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6930C2636042300738969 /* Data+Ext.swift */; };
+		5BE6931526360CC100738969 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE6931426360CC100738969 /* UserDefaults.swift */; };
+		5BE6931A2636172A00738969 /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE693192636172A00738969 /* TestEnvironment.swift */; };
+		5BE69322263617A700738969 /* MockUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE69321263617A700738969 /* MockUserDefaults.swift */; };
+		5BE693272636185E00738969 /* MockNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE693262636185E00738969 /* MockNetworkClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,10 +111,19 @@
 		5B400EC525FF0E88009EDE62 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		5B519C7C2606BBB1000FD4DC /* CredentialsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsManager.swift; sourceTree = "<group>"; };
 		5B519C812606BEDB000FD4DC /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		5B55A4E02627CAF800C0F8CB /* Notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes.txt; sourceTree = "<group>"; };
 		5B800BA92606C4D100F6C919 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5B800BAE2606D58000F6C919 /* URL+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Ext.swift"; sourceTree = "<group>"; };
 		5BB178D526028873007B0FF5 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		5BB178DA26028883007B0FF5 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		5BE692F82633830900738969 /* MockCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataStack.swift; sourceTree = "<group>"; };
+		5BE69301263385E500738969 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		5BE693062633863C00738969 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		5BE6930C2636042300738969 /* Data+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Ext.swift"; sourceTree = "<group>"; };
+		5BE6931426360CC100738969 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		5BE693192636172A00738969 /* TestEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
+		5BE69321263617A700738969 /* MockUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaults.swift; sourceTree = "<group>"; };
+		5BE693262636185E00738969 /* MockNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				5B1C98832601BECB00DCC268 /* CoreDataManager.swift */,
+				5BE6931426360CC100738969 /* UserDefaults.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -198,6 +216,7 @@
 		5B400E4625FEFF84009EDE62 = {
 			isa = PBXGroup;
 			children = (
+				5B55A4E02627CAF800C0F8CB /* Notes.txt */,
 				5B400E5125FEFF84009EDE62 /* MusicApp */,
 				5B400E6B25FEFF86009EDE62 /* MusicAppTests */,
 				5B400E7625FEFF86009EDE62 /* MusicAppUITests */,
@@ -242,6 +261,8 @@
 		5B400E6B25FEFF86009EDE62 /* MusicAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				5BE693192636172A00738969 /* TestEnvironment.swift */,
+				5BE692F7263382E100738969 /* DependencyMocks */,
 				5B400E6C25FEFF86009EDE62 /* MusicAppTests.swift */,
 				5B400E6E25FEFF86009EDE62 /* Info.plist */,
 			);
@@ -260,6 +281,7 @@
 		5B400E8825FF0028009EDE62 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5BE69300263385D200738969 /* Environment */,
 				5B1C98822601BE9000DCC268 /* Store */,
 				5B1C987426019FD700DCC268 /* Models */,
 				5B400E8925FF002E009EDE62 /* Networking */,
@@ -329,6 +351,7 @@
 		5B400E9A25FF0420009EDE62 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5BE6930B263603FF00738969 /* Data */,
 				5B400E9B25FF0420009EDE62 /* UIView */,
 				5B400E9D25FF0420009EDE62 /* URLResponse */,
 				5B400E9F25FF0420009EDE62 /* UIImageView */,
@@ -471,6 +494,33 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		5BE692F7263382E100738969 /* DependencyMocks */ = {
+			isa = PBXGroup;
+			children = (
+				5BE692F82633830900738969 /* MockCoreDataStack.swift */,
+				5BE69321263617A700738969 /* MockUserDefaults.swift */,
+				5BE693262636185E00738969 /* MockNetworkClient.swift */,
+			);
+			path = DependencyMocks;
+			sourceTree = "<group>";
+		};
+		5BE69300263385D200738969 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				5BE69301263385E500738969 /* Environment.swift */,
+				5BE693062633863C00738969 /* AppEnvironment.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		5BE6930B263603FF00738969 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5BE6930C2636042300738969 /* Data+Ext.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -607,7 +657,9 @@
 				5B400EB125FF0420009EDE62 /* UIImageView+Ext.swift in Sources */,
 				5B2E066B2606F24200E06405 /* User.swift in Sources */,
 				5B400EB225FF0420009EDE62 /* UIViewController+Ext.swift in Sources */,
+				5BE6930D2636042400738969 /* Data+Ext.swift in Sources */,
 				5B400EB525FF0420009EDE62 /* ImageCache.swift in Sources */,
+				5BE69302263385E500738969 /* Environment.swift in Sources */,
 				5B400E5325FEFF84009EDE62 /* AppDelegate.swift in Sources */,
 				5BB178D626028873007B0FF5 /* Artist.swift in Sources */,
 				5B400E5525FEFF84009EDE62 /* SceneDelegate.swift in Sources */,
@@ -631,8 +683,10 @@
 				5B400E5A25FEFF84009EDE62 /* MusicApp.xcdatamodeld in Sources */,
 				5B400E9025FF03D5009EDE62 /* Endpoints.swift in Sources */,
 				5B400EB425FF0420009EDE62 /* UITableView+Ext.swift in Sources */,
+				5BE6931526360CC100738969 /* UserDefaults.swift in Sources */,
 				5B400E9225FF03D5009EDE62 /* API.swift in Sources */,
 				5B400EAD25FF0420009EDE62 /* Utils.swift in Sources */,
+				5BE693072633863C00738969 /* AppEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +695,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B400E6D25FEFF86009EDE62 /* MusicAppTests.swift in Sources */,
+				5BE693272636185E00738969 /* MockNetworkClient.swift in Sources */,
+				5BE6931A2636172A00738969 /* TestEnvironment.swift in Sources */,
+				5BE69322263617A700738969 /* MockUserDefaults.swift in Sources */,
+				5BE692F92633830900738969 /* MockCoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

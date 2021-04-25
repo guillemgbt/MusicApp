@@ -9,13 +9,20 @@
 import Foundation
 import Combine
 
+protocol NetworkClient {
+    func GET(_ endpoint: Endpoint, onSuccess: @escaping APISuccessResponse, onError: @escaping APIErrorResponse) -> URLSessionDataTask?
+    func POST(_ endpoint: Endpoint, dataDict: [String : Any], onSuccess: @escaping APISuccessResponse, onError: @escaping APIErrorResponse) -> URLSessionDataTask?
+    func GET(_ endpoint: Endpoint) -> AnyPublisher<Data, Error>
+    func POST(_ endpoint: Endpoint, dataDict: [String : Any]) -> AnyPublisher<Data, Error>
+}
 
-typealias APISuccessResponse = (Dictionary<String, Any>)->()
+
+typealias APISuccessResponse = (Data)->()
 typealias APIErrorResponse = (String)->()
 
 
 /// REST API interface to work with HTTP requests
-class API: NSObject {
+class API: NSObject, NetworkClient {
     
     static let shared = API()
     
@@ -156,16 +163,7 @@ class API: NSObject {
                 return
             }
             
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! Dictionary<String, Any>
-                onSuccess(json)
-                
-            } catch let catchError {
-                self.onErrorOcurred(catchError, for: request.url?.absoluteString, onError: onError)
-                return
-            }
-            
-            
+            onSuccess(data)
         })
         
         task.resume()

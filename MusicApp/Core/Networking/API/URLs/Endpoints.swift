@@ -38,8 +38,8 @@ struct Endpoint {
         return copy
     }
     
-    func authenticated(with credentialsManager: CredentialsManaging = CredentialsManager()) -> Endpoint {
-        let tokenItem = URLQueryItem(name: "access_token", value: credentialsManager.accessToken)
+    func authenticated(with environment: Environment = AppEnvironment.shared) -> Endpoint {
+        let tokenItem = URLQueryItem(name: "access_token", value: environment.credentialsManager.accessToken)
        
         var copy = self
         copy.queryItems.append(tokenItem)
